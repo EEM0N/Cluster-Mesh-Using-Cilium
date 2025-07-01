@@ -3,14 +3,12 @@
 This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `cilium`.
 
 ## 📦 Prerequisites
-This repository manages two Kubernetes clusters using separate scripts for each cluster and a shared script for all nodes.
-Links are provided to easily access the commands for cluster-wide and individual cluster operations.
-- [all nodes](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/command.sh)
-- [cluster-1](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
-- [cluster-2](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
+This repository manages two Kubernetes clusters, with separate scripts for each cluster and a shared script for all nodes.
+All nodes run on virtual machines (VMs). Use the following scripts to perform cluster-wide or individual cluster operations:
+- [command.sh — Commands for all nodes](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/command.sh)
+- [master-cluster1.sh — Cluster 1 specific commands](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
+- [master-cluster2.sh — Cluster 2 specific commands](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
 
-
----
 ### List Available Contexts
 ```bash
 vagrant@master-node-cluster1:~$ kubectl get nodes -o wide
