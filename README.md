@@ -155,3 +155,53 @@ vagrant@master-node-cluster2:~$ cilium clustermesh status
 
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
 ```
+### 🔍 Test Cluster Connectivity
+
+To verify cluster connectivity through Cilium Cluster Mesh, apply the example global service manifests on both clusters:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/cilium/cilium/v1.13/examples/kubernetes/clustermesh/global-service-example/cluster1.yaml
+kubectl apply -f https://raw.githubusercontent.com/cilium/cilium/v1.13/examples/kubernetes/clustermesh/global-service-example/cluster2.yaml
+```
+#### Cluster 1 
+```bash
+vagrant@master-node-cluster1:~$ kubectl exec -ti deployment/x-wing -- bash
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-5ckmn:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-5ckmn:/# 
+```
+#### Cluster 2
+```bash
+vagrant@master-node-cluster2:~$ kubectl exec -ti deployment/x-wing -- bash
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-1"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-t266q:/# curl rebel-base
+{"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
+root@x-wing-66f7489d8-t266q:/# 
+```
