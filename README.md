@@ -38,7 +38,9 @@ KUBECONFIG=.kube/config-1:.kube/config-2 kubectl config view --flatten > .kube/m
 export KUBECONFIG=.kube/merged-config
 ```
 
-### List Available Contexts
+### 
+Ensure your kubeconfig file contains multiple cluster contexts. Below are example commands to verify the configuration:
+
 ```bash
 vagrant@master-node-cluster1:~$ kubectl config get-contexts --kubeconfig=.kube/merged-config
 CURRENT   NAME                CLUSTER     AUTHINFO         NAMESPACE
