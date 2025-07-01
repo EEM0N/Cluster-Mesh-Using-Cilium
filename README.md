@@ -87,7 +87,10 @@ kubectl get secret cilium-ca -n kube-system -o yaml > cilium-ca.yaml
 kubectl replace -f cilium-ca.yaml -n kube-system --force
 ```
 
-### List Available Contexts
+### 🔗 Connecting Cluster 1 to Cluster 2
+To establish Cluster Mesh connectivity between the two clusters, use the `cilium clustermesh connect` command.  
+This will automatically exchange secrets and configure mutual trust between the clusters.
+
 ```bash
 vagrant@master-node-cluster1:~$ cilium clustermesh connect --context cluster-1-context --destination-context cluster-2-context  
 ✨ Extracting access information of cluster cluster-1...
@@ -100,6 +103,10 @@ vagrant@master-node-cluster1:~$ cilium clustermesh connect --context cluster-1-c
 ℹ️ Configuring Cilium in cluster cluster-2 to connect to cluster cluster-1
 ✅ Connected cluster cluster-1 <=> cluster-2!
 ```
+> **Note:** Make sure both clusters are running Cilium with Cluster Mesh support enabled and are reachable from each other before running this command.
+
+
+
 
 ### List Available Contexts
 ```bash
