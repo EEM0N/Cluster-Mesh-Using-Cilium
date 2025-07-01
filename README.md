@@ -21,7 +21,8 @@ Ensure your kubeconfig file contains multiple cluster contexts. Below are exampl
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-certificate-data}' | base64 -d > /tmp/cluster-1-client.crt
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-key-data}' | base64 -d > /tmp/cluster-1-client.key
 kubectl config set-credentials cluster-1-user   --client-certificate=/tmp/cluster-1-client.crt   --client-key=/tmp/cluster-1-client.key   --embed-certs=true
- 
+
+### List Available Contexts
 ```bash 
 KUBECONFIG=.kube/config-1:.kube/config-2 kubectl config view --flatten > .kube/merged-config
 export KUBECONFIG=.kube/merged-config
