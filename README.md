@@ -1,6 +1,6 @@
 # Cilium Cluster Mesh Demo
 
-This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `kubectl`, `cilium`, and a merged kubeconfig file.
+This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `cilium`.
 
 ## 📦 Prerequisites
 
@@ -11,6 +11,23 @@ This repository demonstrates the setup and verification of **Cilium Cluster Mesh
 - Network connectivity between clusters (VPN, overlay, or routed)
 
 ---
+### List Available Contexts
+```bash
+vagrant@master-node-cluster1:~$ kubectl get nodes -o wide
+NAME                     STATUS   ROLES           AGE   VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
+master-node-cluster1     Ready    control-plane   65m   v1.31.10   192.168.56.10   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+worker-node01-cluster1   Ready    <none>          62m   v1.31.10   192.168.56.11   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+worker-node02-cluster1   Ready    <none>          62m   v1.31.10   192.168.56.12   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+
+vagrant@master-node-cluster2:~$ kubectl get nodes -o wide
+NAME                     STATUS   ROLES           AGE   VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
+master-node-cluster1     Ready    control-plane   65m   v1.31.10   192.168.56.10   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+worker-node01-cluster1   Ready    <none>          62m   v1.31.10   192.168.56.11   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+worker-node02-cluster1   Ready    <none>          62m   v1.31.10   192.168.56.12   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
+
+```
+
+
 
 ## 🧩 Multi-Cluster Context Setup
 
