@@ -25,11 +25,32 @@ worker-node01-cluster2   Ready    <none>          53m   v1.31.10   192.168.56.21
 worker-node02-cluster2   Ready    <none>          53m   v1.31.10   192.168.56.22   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
 ```
 
-### List Available Contexts
+### 🔧 Configure Kubeconfig for Each Cluster
+For each cluster's kubeconfig, you need to update the following fields to ensure proper identification and separation:
+
+- **Cluster name**
+- **Context name**
+- **User name**
+
+In this example, we use the following naming convention:
+
+- **Cluster:** `cluster-1`  
+- **Context:** `cluster-1-context`  
+- **User:** `cluster-1-user`
+
+Use the following commands to extract and set user credentials:
 ```bash
+# Extract and decode the client certificate
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-certificate-data}' | base64 -d > /tmp/cluster-1-client.crt
+
+# Extract and decode the client key
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-key-data}' | base64 -d > /tmp/cluster-1-client.key
-kubectl config set-credentials cluster-1-user   --client-certificate=/tmp/cluster-1-client.crt   --client-key=/tmp/cluster-1-client.key   --embed-certs=true
+
+# Set the user credentials for cluster-1
+kubectl config set-credentials cluster-1-user \
+  --client-certificate=/tmp/cluster-1-client.crt \
+  --client-key=/tmp/cluster-1-client.key \
+  --embed-certs=true
 ```
 
 ### Merged kubeconfig file containing access to all clusters
@@ -48,7 +69,7 @@ CURRENT   NAME                CLUSTER     AUTHINFO         NAMESPACE
           cluster-2-context   cluster-2   cluster-2-user
 ```
 
-### List Available Contexts
+### 
 ```bash
 vagrant@master-node-cluster1:~$ kubectl config get-clusters --kubeconfig=.kube/merged-config
 NAME
