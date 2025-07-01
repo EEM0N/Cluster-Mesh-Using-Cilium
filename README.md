@@ -21,31 +21,42 @@ Ensure your kubeconfig file contains multiple cluster contexts. Below are exampl
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-certificate-data}' | base64 -d > /tmp/cluster-1-client.crt
 kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].user.client-key-data}' | base64 -d > /tmp/cluster-1-client.key
 kubectl config set-credentials cluster-1-user   --client-certificate=/tmp/cluster-1-client.crt   --client-key=/tmp/cluster-1-client.key   --embed-certs=true
+```
 
 ### List Available Contexts
-```bash 
+```bash
 KUBECONFIG=.kube/config-1:.kube/config-2 kubectl config view --flatten > .kube/merged-config
 export KUBECONFIG=.kube/merged-config
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster1:~$ kubectl config get-contexts --kubeconfig=.kube/merged-config
 CURRENT   NAME                CLUSTER     AUTHINFO         NAMESPACE
 *         cluster-1-context   cluster-1   cluster-1-user
           cluster-2-context   cluster-2   cluster-2-user
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster1:~$ kubectl config get-clusters --kubeconfig=.kube/merged-config
 NAME
 cluster-1
 cluster-2
+```
 
+### List Available Contexts
 ```bash
 kubectl get secret cilium-ca -n kube-system -o yaml > cilium-ca.yaml
+```
 
+### List Available Contexts
 ```bash
 kubectl replace -f cilium-ca.yaml -n kube-system --force
 
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster1:~$ cilium clustermesh connect --context cluster-1-context --destination-context cluster-2-context  
 ✨ Extracting access information of cluster cluster-1...
@@ -57,7 +68,9 @@ vagrant@master-node-cluster1:~$ cilium clustermesh connect --context cluster-1-c
 ℹ️ Configuring Cilium in cluster cluster-1 to connect to cluster cluster-2
 ℹ️ Configuring Cilium in cluster cluster-2 to connect to cluster cluster-1
 ✅ Connected cluster cluster-1 <=> cluster-2!
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster2:~$ cilium clustermesh connect --context cluster-2-context --destination-context cluster-1-context  
 ✨ Extracting access information of cluster cluster-2...
@@ -70,7 +83,9 @@ vagrant@master-node-cluster2:~$ cilium clustermesh connect --context cluster-2-c
 ℹ️ Configuring Cilium in cluster cluster-1 to connect to cluster cluster-2
 ✅ Connected cluster cluster-2 <=> cluster-1!
 vagrant@master-node-cluster2:~$ 
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster1:~$ cilium clustermesh status
 ✅ Service "clustermesh-apiserver" of type "LoadBalancer" found
@@ -88,7 +103,9 @@ vagrant@master-node-cluster1:~$ cilium clustermesh status
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
 
 vagrant@master-node-cluster1:~$ 
+```
 
+### List Available Contexts
 ```bash
 vagrant@master-node-cluster2:~$ cilium clustermesh status
 ✅ Service "clustermesh-apiserver" of type "LoadBalancer" found
@@ -104,3 +121,6 @@ vagrant@master-node-cluster2:~$ cilium clustermesh status
   - cluster-2: 3/3 configured, 3/3 connected - KVStoreMesh: 1/1 configured, 1/1 connected
 
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
+```
+
+### List Available Contexts
