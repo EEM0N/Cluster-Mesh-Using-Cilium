@@ -103,12 +103,6 @@ vagrant@master-node-cluster1:~$ cilium clustermesh connect --context cluster-1-c
 ℹ️ Configuring Cilium in cluster cluster-2 to connect to cluster cluster-1
 ✅ Connected cluster cluster-1 <=> cluster-2!
 ```
-> **Note:** Make sure both clusters are running Cilium with Cluster Mesh support enabled and are reachable from each other before running this command.
-
-
-
-
-### List Available Contexts
 ```bash
 vagrant@master-node-cluster2:~$ cilium clustermesh connect --context cluster-2-context --destination-context cluster-1-context  
 ✨ Extracting access information of cluster cluster-2...
@@ -122,8 +116,13 @@ vagrant@master-node-cluster2:~$ cilium clustermesh connect --context cluster-2-c
 ✅ Connected cluster cluster-2 <=> cluster-1!
 vagrant@master-node-cluster2:~$ 
 ```
+> **Note:** Make sure both clusters are running Cilium with Cluster Mesh support enabled and are reachable from each other before running this command.
 
-### List Available Contexts
+### ✅ Check Cluster Mesh Status
+
+Once both clusters are connected, you can verify the Cluster Mesh status using the `cilium clustermesh status` command.  
+This command confirms service availability, KVStore mesh connectivity, and the status of inter-cluster connections.
+
 ```bash
 vagrant@master-node-cluster1:~$ cilium clustermesh status
 ✅ Service "clustermesh-apiserver" of type "LoadBalancer" found
@@ -139,11 +138,7 @@ vagrant@master-node-cluster1:~$ cilium clustermesh status
   - cluster-2: 3/3 configured, 3/3 connected - KVStoreMesh: 1/1 configured, 1/1 connected
 
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
-
-vagrant@master-node-cluster1:~$ 
 ```
-
-### List Available Contexts
 ```bash
 vagrant@master-node-cluster2:~$ cilium clustermesh status
 ✅ Service "clustermesh-apiserver" of type "LoadBalancer" found
@@ -160,5 +155,3 @@ vagrant@master-node-cluster2:~$ cilium clustermesh status
 
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
 ```
-
-### List Available Contexts
