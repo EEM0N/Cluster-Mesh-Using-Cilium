@@ -1,5 +1,4 @@
 # Cilium Cluster Mesh Demo
-
 This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `cilium`.
 
 ## 📦 Prerequisites
@@ -27,13 +26,11 @@ worker-node02-cluster2   Ready    <none>          53m   v1.31.10   192.168.56.22
 
 ### 🔧 Configure Kubeconfig for Each Cluster
 For each cluster's kubeconfig, you need to update the following fields to ensure proper identification and separation:
-
 - **Cluster name**
 - **Context name**
 - **User name**
 
 In this example, we use the following naming convention:
-
 - **Cluster:** `cluster-1`  
 - **Context:** `cluster-1-context`  
 - **User:** `cluster-1-user`
@@ -55,7 +52,7 @@ kubectl config set-credentials cluster-1-user \
   --embed-certs=true
 ```
 
-### Merged kubeconfig file containing access to all clusters
+### 🔧 Merged kubeconfig file containing access to all clusters
 ```bash
 KUBECONFIG=.kube/config-1:.kube/config-2 kubectl config view --flatten > .kube/merged-config
 export KUBECONFIG=.kube/merged-config
@@ -63,7 +60,6 @@ export KUBECONFIG=.kube/merged-config
 
 ### 
 Ensure your kubeconfig file contains multiple cluster contexts. Below are example commands to verify the configuration:
-
 ```bash
 vagrant@master-node-cluster1:~$ kubectl config get-contexts --kubeconfig=.kube/merged-config
 CURRENT   NAME                CLUSTER     AUTHINFO         NAMESPACE
@@ -79,15 +75,16 @@ cluster-1
 cluster-2
 ```
 
-### List Available Contexts
+### 🔁 Share Cilium CA Between Clusters
+To enable cluster mesh connectivity, you need to copy the `cilium-ca` secret from **Cluster 1** and apply it to **Cluster 2**.
+#### 📤 Export `cilium-ca` from Cluster 1 and apply it to Cluster 2
+
 ```bash
+# Export the cilium-ca secret from Cluster 1
 kubectl get secret cilium-ca -n kube-system -o yaml > cilium-ca.yaml
-```
 
-### List Available Contexts
-```bash
+# Apply the exported secret to Cluster 2
 kubectl replace -f cilium-ca.yaml -n kube-system --force
-
 ```
 
 ### List Available Contexts
