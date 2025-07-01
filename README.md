@@ -1,5 +1,7 @@
-# Cilium Cluster Mesh Demo
-This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `cilium`.
+# 🔗 Cilium Cluster Mesh Setup Across Multiple Kubernetes Clusters
+This repository demonstrates how to set up and verify **Cilium Cluster Mesh** between two Kubernetes clusters running on virtual machines.  
+It covers configuration of kubeconfigs, secure sharing of Cilium certificates, and establishing inter-cluster connectivity using `cilium clustermesh`.  
+Step-by-step scripts are provided to automate and validate each stage of the setup.
 
 ## 📦 Prerequisites
 This repository manages two Kubernetes clusters, with separate scripts for each cluster and a shared script for all nodes.
