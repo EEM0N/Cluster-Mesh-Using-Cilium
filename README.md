@@ -205,3 +205,21 @@ root@x-wing-66f7489d8-t266q:/# curl rebel-base
 {"Galaxy": "Alderaan", "Cluster": "Cluster-2"}
 root@x-wing-66f7489d8-t266q:/# 
 ```
+
+```bash
+vagrant@master-node-cluster1:~$ kubectl get svc -n kube-system
+NAME                            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)                      AGE
+cilium-envoy                    ClusterIP      None            <none>           9964/TCP                     115m
+clustermesh-apiserver           LoadBalancer   10.129.157.74   192.168.56.200   2379:30376/TCP               115m
+clustermesh-apiserver-metrics   ClusterIP      None            <none>           9962/TCP,9964/TCP,9963/TCP   115m
+hubble-peer                     ClusterIP      10.129.75.114   <none>           443/TCP                      115m
+hubble-relay                    ClusterIP      10.129.233.80   <none>           80/TCP                       115m
+hubble-ui                       LoadBalancer   10.129.124.3    192.168.56.201   80:31440/TCP                 115m
+kube-dns                        ClusterIP      10.129.0.10     <none>           53/UDP,53/TCP,9153/TCP       115m
+```
+
+### 📊 Cluster Connectivity Visualization
+
+The figure below shows the cluster connectivity in the Hubble UI:
+
+![Hubble UI showing cluster connectivity](./images/hubble-cluster-connectivity.png)
