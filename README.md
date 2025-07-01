@@ -3,12 +3,12 @@
 This repository demonstrates the setup and verification of **Cilium Cluster Mesh** across multiple Kubernetes clusters using `cilium`.
 
 ## 📦 Prerequisites
+This repository manages two Kubernetes clusters using separate scripts for each cluster and a shared script for all nodes.
+Links are provided to easily access the commands for cluster-wide and individual cluster operations.
+- [all nodes](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/command.sh)
+- [cluster-1]https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
+- [cluster-2](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
 
-- Two or more Kubernetes clusters (e.g., via `kind`, `kubeadm`, or cloud providers)
-- [kubectl](https://kubernetes.io/docs/tasks/tools/)
-- [Cilium CLI](https://docs.cilium.io/en/stable/gettingstarted/cilium-cli/)
-- Merged kubeconfig file containing access to all clusters
-- Network connectivity between clusters (VPN, overlay, or routed)
 
 ---
 ### List Available Contexts
@@ -40,7 +40,7 @@ kubectl config view --raw -o jsonpath='{.users[?(@.name=="kubernetes-admin")].us
 kubectl config set-credentials cluster-1-user   --client-certificate=/tmp/cluster-1-client.crt   --client-key=/tmp/cluster-1-client.key   --embed-certs=true
 ```
 
-### List Available Contexts
+### Merged kubeconfig file containing access to all clusters
 ```bash
 KUBECONFIG=.kube/config-1:.kube/config-2 kubectl config view --flatten > .kube/merged-config
 export KUBECONFIG=.kube/merged-config
