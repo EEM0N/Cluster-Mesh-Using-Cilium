@@ -6,7 +6,7 @@ This repository demonstrates the setup and verification of **Cilium Cluster Mesh
 This repository manages two Kubernetes clusters using separate scripts for each cluster and a shared script for all nodes.
 Links are provided to easily access the commands for cluster-wide and individual cluster operations.
 - [all nodes](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/command.sh)
-- [cluster-1]https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
+- [cluster-1](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
 - [cluster-2](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
 
 
