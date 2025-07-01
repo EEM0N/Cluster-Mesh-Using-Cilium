@@ -9,7 +9,8 @@ All nodes run on virtual machines (VMs). Use the following scripts to perform cl
 - [master-cluster1.sh — Cluster 1 specific commands](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster1.sh)
 - [master-cluster2.sh — Cluster 2 specific commands](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
 
-### List Available Contexts
+## 🧩 Multi-Cluster Context Setup
+Ensure your kubeconfig file contains multiple cluster contexts. Below are example commands to verify the configuration:
 ```bash
 vagrant@master-node-cluster1:~$ kubectl get nodes -o wide
 NAME                     STATUS   ROLES           AGE   VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
@@ -22,14 +23,7 @@ NAME                     STATUS   ROLES           AGE   VERSION    INTERNAL-IP  
 master-node-cluster2     Ready    control-plane   54m   v1.31.10   192.168.56.20   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
 worker-node01-cluster2   Ready    <none>          53m   v1.31.10   192.168.56.21   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
 worker-node02-cluster2   Ready    <none>          53m   v1.31.10   192.168.56.22   <none>        Ubuntu 22.04.4 LTS   5.15.0-102-generic   containerd://1.7.27
-
 ```
-
-
-
-## 🧩 Multi-Cluster Context Setup
-
-Ensure your kubeconfig file contains multiple cluster contexts. Below are example commands to verify the configuration:
 
 ### List Available Contexts
 ```bash
