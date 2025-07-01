@@ -38,6 +38,8 @@ In this example, we use the following naming convention:
 - **Context:** `cluster-1-context`  
 - **User:** `cluster-1-user`
 
+> **Note:** You can also manually update these naming conventions directly in the kubeconfig file if preferred.
+
 Use the following commands to extract and set user credentials:
 ```bash
 # Extract and decode the client certificate
