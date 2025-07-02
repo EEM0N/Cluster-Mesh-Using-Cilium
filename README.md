@@ -87,7 +87,7 @@ kubectl get secret cilium-ca -n kube-system -o yaml > cilium-ca.yaml
 kubectl replace -f cilium-ca.yaml -n kube-system --force
 ```
 
-### 🔗 Connecting Cluster 1 to Cluster 2
+### 🔗 Connecting Clusters
 To establish Cluster Mesh connectivity between the two clusters, use the `cilium clustermesh connect` command.  
 This will automatically exchange secrets and configure mutual trust between the clusters.
 
@@ -140,10 +140,10 @@ vagrant@master-node-cluster1:~$ cilium clustermesh status
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
 ```
 ```bash
-vagrant@master-node-cluster2:~$ cilium clustermesh status
+vagrant@master-node-cluster2:~$ cilium clustermesh status 
 ✅ Service "clustermesh-apiserver" of type "LoadBalancer" found
 ✅ Cluster access information is available:
-  - 192.168.56.200:2379
+  - 192.168.56.100:2379
 ✅ Deployment clustermesh-apiserver is ready
 ℹ️  KVStoreMesh is enabled
 
@@ -151,9 +151,11 @@ vagrant@master-node-cluster2:~$ cilium clustermesh status
 ✅ All 1 KVStoreMesh replicas are connected to all clusters [min:1 / avg:1.0 / max:1]     
 
 🔌 Cluster Connections:
-  - cluster-2: 3/3 configured, 3/3 connected - KVStoreMesh: 1/1 configured, 1/1 connected
+  - cluster-1: 3/3 configured, 3/3 connected - KVStoreMesh: 1/1 configured, 1/1 connected
 
 🔀 Global services: [ min:0 / avg:0.0 / max:0 ]
+
+vagrant@master-node-cluster2:~$ 
 ```
 ### 🔍 Test Cluster Connectivity
 
