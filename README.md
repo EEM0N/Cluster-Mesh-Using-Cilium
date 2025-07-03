@@ -9,7 +9,6 @@ All nodes run on virtual machines (VMs). Use the following scripts to perform cl
 - [master-cluster2.sh — Cluster 2 specific commands](https://github.com/EEM0N/Cluster-Mesh-Using-Cilium/blob/main/master-cluster2.sh)
 
 ## 🧩 Multi-Cluster Context Setup
-Ensure your kubeconfig file contains multiple cluster contexts. Below are example commands to verify the configuration:
 ```bash
 vagrant@master-node-cluster1:~$ kubectl get nodes -o wide
 NAME                     STATUS   ROLES           AGE   VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
